@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FacebookApp</string>
+    <string name="loggin_message">You\'re logged in as </string>
 </resources>
