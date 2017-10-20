@@ -10,6 +10,7 @@ import fm.kirtsim.kharos.facebookapp.ViewMvc;
  * Created by kharos on 13/10/2017
  */
 
+@SuppressWarnings("WeakerAccess")
 public abstract class BaseViewMvc<ListenerType> implements ViewMvc<ListenerType> {
 
     protected View rootView;
