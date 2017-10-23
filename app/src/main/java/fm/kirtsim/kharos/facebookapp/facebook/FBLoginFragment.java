@@ -14,12 +14,7 @@ import fm.kirtsim.kharos.facebookapp.BaseFragment;
 
 public class FBLoginFragment extends BaseFragment {
 
-    public static FBLoginFragment newInstance(Bundle args) {
-        FBLoginFragment fragment = new FBLoginFragment();
-        if (args != null)
-            fragment.setArguments(args);
-        return fragment;
-    }
+    private LoginViewMvc viewMvc;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +25,7 @@ public class FBLoginFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        viewMvc = new LoginViewMvcImpl(inflater, container, getResources());
+        return viewMvc.getRootView();
     }
 }

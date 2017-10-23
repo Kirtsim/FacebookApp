@@ -9,15 +9,15 @@ import android.support.v4.app.Fragment;
 
 public abstract class BaseFragment extends Fragment {
 
-    interface BaseFragmentListener {
-        void startFragment(Class<? extends BaseFragment> clasz, FragmentChangeData changeData);
+    public interface BaseFragmentListener {
+        void startFragment(Class<? extends BaseFragment> _class, FragmentChangeData changeData);
     }
 
     private BaseFragmentListener listener;
 
-    protected void startFragment(Class<? extends BaseFragment> clasz,
+    protected void startFragment(Class<? extends BaseFragment> _class,
                                  FragmentChangeData changeData) {
-        listener.startFragment(clasz, changeData);
+        listener.startFragment(_class, changeData);
     }
 
     @Override
