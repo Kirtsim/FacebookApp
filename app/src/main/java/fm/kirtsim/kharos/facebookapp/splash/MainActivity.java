@@ -1,5 +1,7 @@
 package fm.kirtsim.kharos.facebookapp.splash;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +9,7 @@ import android.os.Bundle;
 import fm.kirtsim.kharos.facebookapp.Anim;
 import fm.kirtsim.kharos.facebookapp.BaseFragment;
 import fm.kirtsim.kharos.facebookapp.FragmentChangeData;
-import fm.kirtsim.kharos.facebookapp.facebook.FBLoginFragment;
+import fm.kirtsim.kharos.facebookapp.facebook.login.FBLoginFragment;
 
 public class MainActivity extends AppCompatActivity implements BaseFragment.BaseFragmentListener {
 
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.Base
     }
 
     @Override
-    public void startFragment(Class<? extends BaseFragment> _class, FragmentChangeData changeData) {
+    public void startFragment(Class<? extends BaseFragment> _class,
+                              @NonNull FragmentChangeData changeData) {
         BaseFragment fragment = createFragmentInstance(_class);
         FragmentTransaction txn = createTransactionFromFragmentChangeData(changeData);
         if (fragment != null) {
@@ -39,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.Base
             txn.replace(viewMvc.getFragmentContainerId(), fragment, changeData.getTag());
         }
         txn.commit();
+    }
+
+    @Override
+    public void popFragment(String txnName, boolean inclusive) {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.popBackStack(txnName, inclusive ? FragmentManager.POP_BACK_STACK_INCLUSIVE : 0);
     }
 
     private FragmentTransaction createTransactionFromFragmentChangeData(FragmentChangeData changeData) {

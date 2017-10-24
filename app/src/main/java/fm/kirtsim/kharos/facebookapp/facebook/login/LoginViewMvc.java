@@ -1,8 +1,10 @@
-package fm.kirtsim.kharos.facebookapp.facebook;
+package fm.kirtsim.kharos.facebookapp.facebook.login;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.view.View;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.login.LoginResult;
 
 import fm.kirtsim.kharos.facebookapp.ViewMvc;
 
@@ -13,11 +15,12 @@ import fm.kirtsim.kharos.facebookapp.ViewMvc;
 public interface LoginViewMvc extends ViewMvc<LoginViewMvc.LoginListener> {
 
     interface LoginListener {
-        void onLoginSuccess();
-        void onLoginCancel();
-        void onLoginError();
+        CallbackManager getCallbackManager();
+        FacebookCallback<LoginResult> getFacebookLoginCallback();
         void onProceedButtonClicked();
     }
+
+    void registerLoginCallback();
 
     void setProfileImage(Drawable drawable);
 

@@ -1,11 +1,9 @@
-package fm.kirtsim.kharos.facebookapp.facebook;
+package fm.kirtsim.kharos.facebookapp.facebook.login;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,6 +12,7 @@ import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
 
 import fm.kirtsim.kharos.facebookapp.R;
+import fm.kirtsim.kharos.facebookapp.facebook.BaseViewMvc;
 
 /**
  * Created by kharos on 12/10/2017
@@ -42,9 +41,15 @@ public class LoginViewMvcImpl extends BaseViewMvc<LoginViewMvc.LoginListener>
         messageTV = findView(R.id.message_tv);
         firstNameTV = findView(R.id.first_name_tv);
         lastNameTV = findView(R.id.last_name_tv);
+
+
     }
 
-    // TODO: Rollback last commit and make it right!!
+    @Override
+    public void registerLoginCallback() {
+        loginButton.registerCallback(listener.getCallbackManager(),
+                                     listener.getFacebookLoginCallback());
+    }
 
     @Override
     public void setProfileImage(Drawable image) {

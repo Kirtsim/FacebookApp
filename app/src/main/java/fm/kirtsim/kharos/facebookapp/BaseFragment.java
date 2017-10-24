@@ -11,6 +11,7 @@ public abstract class BaseFragment extends Fragment {
 
     public interface BaseFragmentListener {
         void startFragment(Class<? extends BaseFragment> _class, FragmentChangeData changeData);
+        void popFragment(String txnName, boolean inclusive);
     }
 
     private BaseFragmentListener listener;
@@ -18,6 +19,10 @@ public abstract class BaseFragment extends Fragment {
     protected void startFragment(Class<? extends BaseFragment> _class,
                                  FragmentChangeData changeData) {
         listener.startFragment(_class, changeData);
+    }
+
+    protected void popFragment(String txnName, boolean inclusive) {
+        listener.popFragment(txnName, inclusive);
     }
 
     @Override
